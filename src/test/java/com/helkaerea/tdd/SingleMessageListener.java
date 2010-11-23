@@ -1,0 +1,26 @@
+package com.helkaerea.tdd;
+
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.TimeUnit;
+
+import org.jivesoftware.smack.Chat;
+import org.jivesoftware.smack.MessageListener;
+import org.jivesoftware.smack.packet.Message;
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+
+
+public class SingleMessageListener implements MessageListener{
+
+    public final ArrayBlockingQueue<Message> messages = new ArrayBlockingQueue<Message>(1);
+    @Override
+    public void processMessage(Chat chat, Message message) {
+        messages.add(message);        
+    }
+    
+    public void recieveMessage() throws InterruptedException {
+        assertThat("Message" , messages.poll(15, TimeUnit.SECONDS), is(notNullValue()));
+        
+    }
+     
+}

@@ -1,0 +1,21 @@
+.class
+
+# eclipse files
+.classpath
+.project
+.settings/
+
+# idea files
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# binary output
+target/
+artifacts/
+overlays/
+
+.DS_Store
+.springBeans
+bin/
